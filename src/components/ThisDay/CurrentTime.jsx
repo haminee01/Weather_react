@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useTime } from "../../utils/useTime";
 
 const CurrentTime = () => {
-  const [now, setNow] = useState(new Date());
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setNow(new Date());
-    }, 1000);
-    return () => clearInterval();
-  });
+  const currentTime = useTime(1000);
 
   const time = new Intl.DateTimeFormat("ko-KR", {
     hour: "numeric",
     minute: "numeric",
-  }).format(now);
+  }).format(currentTime);
 
   return <div>{time}</div>;
 };
